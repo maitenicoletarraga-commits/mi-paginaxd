@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ServiTec — Información</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Servi<span>Tec</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="informacion.html" class="activo">Información</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="ubicacion.html">Ubicación</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <a href="reservas.html" class="nav-cta">Reservar turno</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <i class="ti ti-menu-2" id="navToggleIcon"></i>
+    </button>
+  </nav>
+
+  <!-- ENCABEZADO -->
+  <div class="page-header">
+    <div class="section-eyebrow">Nuestros servicios</div>
+    <h2 class="page-titulo">Todo lo que hacemos</h2>
+    <p class="page-sub">Diagnóstico gratuito en todos los casos. Si no podemos repararlo, no cobramos.</p>
+  </div>
+
+  <!-- SERVICIOS COMPLETOS -->
+  <section class="section">
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-cpu" style="color:#1C6EF2;"></i></div>
+        <h3>Reparación de PC</h3>
+        <p>Hardware, fuente de poder, placa madre, RAM y almacenamiento. Reemplazo de piezas con garantía.</p>
+        <span class="card-badge badge-azul">Desde Bs. 80</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-device-laptop" style="color:#1C6EF2;"></i></div>
+        <h3>Laptops</h3>
+        <p>Pantallas rotas, teclados, bisagras, batería, cargadores y sistema de refrigeración.</p>
+        <span class="card-badge badge-azul">Desde Bs. 100</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-layout-dashboard" style="color:#F5A623;"></i></div>
+        <h3>Software & OS</h3>
+        <p>Formateo, instalación de Windows o Linux, drivers, eliminación de virus y optimización.</p>
+        <span class="card-badge badge-ambar">Desde Bs. 50</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-network" style="color:#3B6D11;"></i></div>
+        <h3>Redes</h3>
+        <p>Configuración de router, cableado estructurado, diagnóstico de red lenta o sin conexión.</p>
+        <span class="card-badge badge-verde">Desde Bs. 60</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-printer" style="color:#1C6EF2;"></i></div>
+        <h3>Periféricos</h3>
+        <p>Impresoras, monitores, teclados, mouses, parlantes y cualquier accesorio externo.</p>
+        <span class="card-badge badge-azul">Desde Bs. 40</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-shield-check" style="color:#3B6D11;"></i></div>
+        <h3>Mantenimiento</h3>
+        <p>Limpieza interna profunda, cambio de pasta térmica y revisión preventiva completa.</p>
+        <span class="card-badge badge-verde">Desde Bs. 35</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso">
+    <div class="section-eyebrow">Cómo trabajamos</div>
+    <div class="section-title" style="color:#F5F8FC;">Proceso simple, sin sorpresas</div>
+    <p class="section-sub">Cada equipo pasa por el mismo proceso claro y transparente.</p>
+    <div class="pasos">
+      <div class="paso"><div class="paso-num">01</div><h4>Traes tu equipo</h4><p>Lo registramos y te damos un comprobante.</p></div>
+      <div class="paso"><div class="paso-num">02</div><h4>Diagnóstico gratis</h4><p>Te explicamos qué tiene antes de cobrar.</p></div>
+      <div class="paso"><div class="paso-num">03</div><h4>Aprobás el presupuesto</h4><p>Decidís si seguimos. Sin presión.</p></div>
+      <div class="paso"><div class="paso-num">04</div><h4>Lo reparamos</h4><p>Repuestos de calidad y manos expertas.</p></div>
+      <div class="paso"><div class="paso-num">05</div><h4>Te avisamos</h4><p>Mensaje cuando tu equipo está listo.</p></div>
+    </div>
+  </section>
+
+  <!-- GARANTIAS -->
+  <section class="section">
+    <div class="section-eyebrow">Garantías</div>
+    <div class="section-title">¿Qué garantizamos?</div>
+    <div class="garantias-grid">
+      <div class="garantia-item">
+        <i class="ti ti-clock" style="color:var(--electrico);font-size:28px;"></i>
+        <h4>30 días de garantía</h4>
+        <p>En todas las reparaciones de hardware.</p>
+      </div>
+      <div class="garantia-item">
+        <i class="ti ti-currency-dollar" style="color:#3B6D11;font-size:28px;"></i>
+        <h4>Sin cargo si no se repara</h4>
+        <p>Si no podemos arreglarlo, no cobramos diagnóstico.</p>
+      </div>
+      <div class="garantia-item">
+        <i class="ti ti-package" style="color:#F5A623;font-size:28px;"></i>
+        <h4>Repuestos originales</h4>
+        <p>Usamos piezas de calidad certificada.</p>
+      </div>
+      <div class="garantia-item">
+        <i class="ti ti-user-check" style="color:var(--electrico);font-size:28px;"></i>
+        <h4>Técnicos certificados</h4>
+        <p>Personal capacitado y con experiencia comprobada.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Servi<span>Tec</span></div>
+    <div class="footer-info">Satelite Norte, Santa Cruz - Warnes, Mercado Central "20 de Abril" - Puesto 12 &nbsp;·&nbsp; <strong>+591 78118558</strong><br/>Lun–Sáb 8:00–19:00 &nbsp;·&nbsp; servitec@email.com</div>
+    <div class="footer-redes">
+      
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+  <script>
+    // Menú hamburguesa (móvil)
+    (function () {
+      const navToggle = document.getElementById('navToggle');
+      const navToggleIcon = document.getElementById('navToggleIcon');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', function () {
+        const abierto = navLinks.classList.toggle('abierto');
+        navToggle.setAttribute('aria-expanded', abierto);
+        navToggleIcon.className = abierto ? 'ti ti-x' : 'ti ti-menu-2';
+      });
+
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('abierto');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggleIcon.className = 'ti ti-menu-2';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

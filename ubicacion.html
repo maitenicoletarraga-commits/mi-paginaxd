@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ServiTec — Ubicación</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav>
+    <div class="logo">Servi<span>Tec</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="informacion.html">Información</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="ubicacion.html" class="activo">Ubicación</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <a href="reservas.html" class="nav-cta">Reservar turno</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <i class="ti ti-menu-2" id="navToggleIcon"></i>
+    </button>
+  </nav>
+
+  <div class="page-header">
+    <div class="section-eyebrow">📍 ¿Dónde estamos?</div>
+    <h2 class="page-titulo">Nuestra ubicación</h2>
+    <p class="page-sub">Satélite Norte, Santa Cruz - Warnes, Mercado Central "20 de Abril" puesto 12</p>
+  </div>
+
+  <!-- MAPA EMBED -->
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3818.53287654321!2d-63.1575!3d-17.5161!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e8f0b2a1c3d7%3A0x5e3f7a8b9c0d1e2f!2sMercado%20Central%20%2220%20de%20Abril%22!5e0!3m2!1ses!2sbo!4v1712345678901"
+      width="100%" height="400" style="border:0; display:block;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- INFO DE UBICACION -->
+  <section class="section">
+    <div class="ubicacion-grid">
+
+      <div class="ubic-card">
+        <i class="ti ti-map-pin"></i>
+        <h4>Dirección exacta</h4>
+        <p><strong>Satélite Norte, Santa Cruz</strong><br/>Warnes, Mercado Central "20 de Abril"<br/>Puesto 12</p>
+      </div>
+
+      <div class="ubic-card">
+        <i class="ti ti-clock"></i>
+        <h4>Horario de atención</h4>
+        <p>Lunes a Viernes: 8:00 – 19:00<br/>Sábado: 8:00 – 14:00<br/>Domingo: cerrado</p>
+      </div>
+
+      <div class="ubic-card">
+        <i class="ti ti-bus"></i>
+        <h4>Cómo llegar</h4>
+        <p>Líneas de micro: 12, 28 y 35.<br/>Parada: Mercado 20 de Abril.<br/>Frente al puesto 12.</p>
+      </div>
+
+      <div class="ubic-card">
+        <i class="ti ti-parking"></i>
+        <h4>Estacionamiento</h4>
+        <p>Parqueo techado a 1/2 cuadra.<br/>Bs. 4 por hora.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Servi<span>Tec</span></div>
+    <div class="footer-info">Satélite Norte, Warnes · Mercado 20 de Abril, puesto 12<br/><strong>+591 78118558</strong> · servitec@email.com</div>
+    <div class="footer-redes">
+      <a class="red-btn" href="https://www.facebook.com" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i></a>
+      <a class="red-btn" href="https://wa.me/59178118558" target="_blank" rel="noopener"><i class="ti ti-brand-whatsapp"></i></a>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+  <script>
+    // Menú hamburguesa (móvil)
+    (function () {
+      const navToggle = document.getElementById('navToggle');
+      const navToggleIcon = document.getElementById('navToggleIcon');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', function () {
+        const abierto = navLinks.classList.toggle('abierto');
+        navToggle.setAttribute('aria-expanded', abierto);
+        navToggleIcon.className = abierto ? 'ti ti-x' : 'ti ti-menu-2';
+      });
+
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('abierto');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggleIcon.className = 'ti ti-menu-2';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

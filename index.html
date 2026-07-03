@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ServiTec — Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== TUTORIAL FLOTANTE ===== */
+    .tutorial-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tutorial-modal {
+      background: white;
+      max-width: 620px;
+      width: 90%;
+      padding: 2.5rem 2rem 2rem;
+      border-radius: 32px;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35);
+      position: relative;
+      animation: slideUp 0.5s ease;
+    }
+
+    .tutorial-modal .close-tut {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      color: #8899b0;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .tutorial-modal .close-tut:hover {
+      color: #1a1e2b;
+    }
+
+    .tut-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1.2rem;
+    }
+
+    .tut-header i {
+      font-size: 2.2rem;
+      color: var(--electrico);
+    }
+
+    .tut-header h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .tut-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 1rem 0;
+      border-bottom: 1px solid #eff3f8;
+    }
+
+    .tut-step:last-child {
+      border-bottom: none;
+    }
+
+    .tut-num {
+      background: var(--electrico);
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .tut-step-content h4 {
+      margin: 0 0 4px 0;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .tut-step-content p {
+      margin: 0;
+      color: var(--texto-medio);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .tut-step-content .tut-highlight {
+      display: inline-block;
+      background: #eef4ff;
+      color: var(--electrico);
+      padding: 0.1rem 0.6rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    .tut-footer {
+      margin-top: 1.8rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+    }
+
+    .tut-footer .btn-primary {
+      padding: 0.7rem 2.2rem;
+      border-radius: 40px;
+      background: var(--electrico);
+      color: white;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+
+    .tut-footer .btn-primary:hover {
+      background: #1a56d6;
+    }
+
+    .tut-footer .btn-skip {
+      background: none;
+      border: none;
+      color: #8899b0;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 0.7rem 1.5rem;
+      transition: color 0.2s;
+    }
+
+    .tut-footer .btn-skip:hover {
+      color: #1a1e2b;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* ===== BOTÓN PARA REABRIR TUTORIAL ===== */
+    .tut-reopen {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      background: var(--electrico);
+      color: white;
+      border: none;
+      border-radius: 60px;
+      padding: 0.9rem 1.6rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 28px rgba(42, 109, 244, 0.35);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .tut-reopen:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 36px rgba(42, 109, 244, 0.45);
+    }
+
+    .tut-reopen i {
+      font-size: 1.3rem;
+    }
+
+    /* ===== RESPONSIVE TUTORIAL ===== */
+    @media (max-width: 500px) {
+      .tutorial-modal {
+        padding: 1.8rem 1.2rem;
+      }
+      .tut-header h2 {
+        font-size: 1.4rem;
+      }
+      .tut-step {
+        gap: 12px;
+        padding: 0.8rem 0;
+      }
+      .tut-footer {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .tut-reopen {
+        bottom: 16px;
+        right: 16px;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TUTORIAL FLOTANTE ===== -->
+  <div class="tutorial-overlay" id="tutorialOverlay">
+    <div class="tutorial-modal">
+      <button class="close-tut" id="closeTut" aria-label="Cerrar tutorial">✕</button>
+
+      <div class="tut-header">
+        <i class="ti ti-help-hexagon"></i>
+        <h2>¿Cómo usar la página?</h2>
+      </div>
+
+      <div class="tut-step">
+        <div class="tut-num">1</div>
+        <div class="tut-step-content">
+          <h4>Explora los servicios</h4>
+          <p>Desde la página de <strong>Información</strong> podés ver todos los servicios que ofrecemos con sus precios.</p>
+          <span class="tut-highlight">📄 Información</span>
+        </div>
+      </div>
+
+      <div class="tut-step">
+        <div class="tut-num">2</div>
+        <div class="tut-step-content">
+          <h4>Reservá tu turno</h4>
+          <p>Andá a <strong>Reservas</strong>, elegí el servicio, día y hora. ¡Sin esperas!</p>
+          <span class="tut-highlight">📅 Reservas</span>
+        </div>
+      </div>
+
+      <div class="tut-step">
+        <div class="tut-num">3</div>
+        <div class="tut-step-content">
+          <h4>Encontrá el local</h4>
+          <p>En <strong>Ubicación</strong> tenés el mapa y la dirección exacta: <em>Mercado 20 de Abril, puesto 12</em>.</p>
+          <span class="tut-highlight">📍 Ubicación</span>
+        </div>
+      </div>
+
+      <div class="tut-step">
+        <div class="tut-num">4</div>
+        <div class="tut-step-content">
+          <h4>Contactanos</h4>
+          <p>En <strong>Contacto</strong> podés escribirnos por WhatsApp, llamar o enviar un mensaje directo.</p>
+          <span class="tut-highlight">📱 Contacto</span>
+        </div>
+      </div>
+
+      <div class="tut-footer">
+        <button class="btn-skip" id="skipTut">Omitir tutorial</button>
+        <button class="btn-primary" id="closeTutBtn">¡Entendido!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BOTÓN PARA REABRIR TUTORIAL ===== -->
+  <button class="tut-reopen" id="reopenTut" title="Ver tutorial nuevamente">
+    <i class="ti ti-help"></i> Ayuda
+  </button>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav>
+    <div class="logo">Servi<span>Tec</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="activo">Inicio</a></li>
+      <li><a href="informacion.html">Información</a></li>
+      <li><a href="reservas.html">Reservas</a></li>
+      <li><a href="ubicacion.html">Ubicación</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+    <a href="reservas.html" class="nav-cta">Reservar turno</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+      <i class="ti ti-menu-2" id="navToggleIcon"></i>
+    </button>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-eyebrow">Servicio técnico especializado</div>
+    <h1>Tu equipo en manos <em>expertas</em></h1>
+    <p class="hero-sub">Reparamos computadoras, laptops y periféricos con diagnóstico gratuito y garantía en todos nuestros trabajos.</p>
+
+    <div class="tracker">
+      <div class="tracker-label">Estado de reparación — ¿cómo funciona?</div>
+      <div class="steps">
+        <div class="step done" id="s1">
+          <div class="step-dot"><i class="ti ti-check"></i></div>
+          <div class="step-name">Recibido</div>
+        </div>
+        <div class="step active" id="s2">
+          <div class="step-dot"><i class="ti ti-zoom-code"></i></div>
+          <div class="step-name">Diagnóstico</div>
+        </div>
+        <div class="step idle" id="s3">
+          <div class="step-dot"><i class="ti ti-tool"></i></div>
+          <div class="step-name">Reparación</div>
+        </div>
+        <div class="step idle" id="s4">
+          <div class="step-dot"><i class="ti ti-package-export"></i></div>
+          <div class="step-name">Entregado</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="reservas.html" class="btn-primary">Reservar turno</a>
+      <a href="informacion.html" class="btn-secondary">Ver servicios</a>
+    </div>
+  </section>
+
+  <!-- ===== ESTADISTICAS ===== -->
+  <div class="stats">
+    <div class="stat"><div class="stat-num">1.200+</div><div class="stat-lbl">equipos reparados</div></div>
+    <div class="stat"><div class="stat-num">98%</div><div class="stat-lbl">clientes satisfechos</div></div>
+    <div class="stat"><div class="stat-num">24h</div><div class="stat-lbl">entrega express</div></div>
+  </div>
+
+  <!-- ===== CARDS RAPIDAS ===== -->
+  <section class="section">
+    <div class="section-eyebrow">Lo que hacemos</div>
+    <div class="section-title">Servicios principales</div>
+    <p class="section-sub">Diagnóstico gratuito en todos los servicios. Sin costo si no podemos arreglarlo.</p>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-cpu" style="color:#1C6EF2;"></i></div>
+        <h3>Reparación de PC</h3>
+        <p>Hardware, fuente de poder, placa madre, RAM y almacenamiento.</p>
+        <span class="card-badge badge-azul">Desde Bs. 80</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-device-laptop" style="color:#1C6EF2;"></i></div>
+        <h3>Laptops</h3>
+        <p>Pantallas, teclados, bisagras, batería y refrigeración.</p>
+        <span class="card-badge badge-azul">Desde Bs. 100</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-layout-dashboard" style="color:#F5A623;"></i></div>
+        <h3>Software & OS</h3>
+        <p>Formateo, Windows/Linux, drivers, virus y optimización.</p>
+        <span class="card-badge badge-ambar">Desde Bs. 50</span>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="ti ti-shield-check" style="color:#3B6D11;"></i></div>
+        <h3>Mantenimiento</h3>
+        <p>Limpieza interna, pasta térmica y revisión preventiva.</p>
+        <span class="card-badge badge-verde">Desde Bs. 35</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <div class="cta-banner">
+    <div>
+      <div class="cta-titulo">¿Listo para traer tu equipo?</div>
+      <div class="cta-sub">Reservá tu turno en línea y te atendemos sin espera.</div>
+    </div>
+    <a href="reservas.html" class="btn-primary">Reservar ahora</a>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-logo">Servi<span>Tec</span></div>
+    <div class="footer-info">Satelite Norte, Santa Cruz - Warnes, Mercado Central "20 de Abril" - Puesto 12 &nbsp;·&nbsp; <strong>+591 78118558</strong><br/>Lun–Sáb 8:00–19:00 &nbsp;·&nbsp; servitec@email.com</div>
+    <div class="footer-redes">
+      <button class="red-btn"><i class="ti ti-brand-facebook"></i></button>
+      <button class="red-btn"><i class="ti ti-brand-whatsapp"></i></button>
+      <button class="red-btn"><i class="ti ti-brand-instagram"></i></button>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+
+  <!-- ===== SCRIPT DEL TUTORIAL ===== -->
+  <script>
+    (function() {
+      const overlay = document.getElementById('tutorialOverlay');
+      const closeTut = document.getElementById('closeTut');
+      const closeTutBtn = document.getElementById('closeTutBtn');
+      const skipTut = document.getElementById('skipTut');
+      const reopenBtn = document.getElementById('reopenTut');
+
+      function cerrarTutorial() {
+        overlay.style.display = 'none';
+      }
+
+      function abrirTutorial() {
+        overlay.style.display = 'flex';
+      }
+
+      // Cerrar con los botones
+      closeTut.addEventListener('click', cerrarTutorial);
+      closeTutBtn.addEventListener('click', cerrarTutorial);
+      skipTut.addEventListener('click', cerrarTutorial);
+
+      // Reabrir desde el botón flotante
+      reopenBtn.addEventListener('click', abrirTutorial);
+
+      // Cerrar si se hace clic fuera del modal (en el overlay)
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          cerrarTutorial();
+        }
+      });
+
+      // El tutorial se muestra automáticamente al cargar la página.
+      // Si el usuario ya lo cerró una vez, no se muestra de nuevo en esa sesión.
+      // Usamos sessionStorage para recordar que ya lo vió.
+      if (sessionStorage.getItem('tutorialVisto') === 'true') {
+        overlay.style.display = 'none';
+      } else {
+        overlay.style.display = 'flex';
+        // Marcamos como visto para esta sesión
+        sessionStorage.setItem('tutorialVisto', 'true');
+      }
+
+      // Si el usuario cierra manualmente, también guardamos que lo vió.
+      // (ya se guarda al cargar, pero por si acaso)
+      function marcarVisto() {
+        sessionStorage.setItem('tutorialVisto', 'true');
+      }
+
+      // Agregamos a los eventos de cierre
+      const cerrarConMarcado = function() {
+        marcarVisto();
+        cerrarTutorial();
+      };
+
+      // Reemplazamos los listeners originales para que marquen como visto
+      closeTut.removeEventListener('click', cerrarTutorial);
+      closeTutBtn.removeEventListener('click', cerrarTutorial);
+      skipTut.removeEventListener('click', cerrarTutorial);
+      overlay.removeEventListener('click', function(e) {
+        if (e.target === overlay) cerrarTutorial();
+      });
+
+      // Nuevos listeners con marcado
+      closeTut.addEventListener('click', cerrarConMarcado);
+      closeTutBtn.addEventListener('click', cerrarConMarcado);
+      skipTut.addEventListener('click', cerrarConMarcado);
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+          marcarVisto();
+          cerrarTutorial();
+        }
+      });
+
+      // El botón de reapertura NO debe marcar como visto, solo abre.
+      // (ya tiene su listener abrirTutorial)
+    })();
+  </script>
+
+  <!-- ===== SCRIPT DEL MENÚ HAMBURGUESA ===== -->
+  <script>
+    (function () {
+      const navToggle = document.getElementById('navToggle');
+      const navToggleIcon = document.getElementById('navToggleIcon');
+      const navLinks = document.querySelector('.nav-links');
+
+      navToggle.addEventListener('click', function () {
+        const abierto = navLinks.classList.toggle('abierto');
+        navToggle.setAttribute('aria-expanded', abierto);
+        navToggleIcon.className = abierto ? 'ti ti-x' : 'ti ti-menu-2';
+      });
+
+      navLinks.querySelectorAll('a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          navLinks.classList.remove('abierto');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggleIcon.className = 'ti ti-menu-2';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
